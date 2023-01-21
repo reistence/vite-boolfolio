@@ -4,21 +4,23 @@ export default {
   data() {
     return {
       headerLinks: [
-        {
-          name: "CHARACTERS",
-          link: "/characters",
+       {
+          name: "Home",
+          routeName: "/",
           active: false,
         },
         {
-          name: "CHARACTERS",
-          link: "/characters",
+          name: "Projects",
+          routeName: "projects",
           active: false,
         },
         {
-          name: "CHARACTERS",
-          link: "/characters",
+          name: "About",
+          routeName: "about",
           active: false,
         },
+        
+
       ],
       hamMenu: false,
     };
@@ -34,7 +36,7 @@ export default {
 <template>
   <header>
     <div class="header-container">
-      <div class="logo">Boolfolio</div>
+      <div class="logo"><router-link :to="headerLinks[0].routeName">Boolfolio</router-link></div>
       <div @click="showHamMenu" class="ham-menu">
         <i class="fa-solid fa-bars"></i>
 
@@ -43,8 +45,9 @@ export default {
             class="menu-item"
             :class="{ active: link.active }"
             v-for="(link, index) in headerLinks"
+            :key="index"
           >
-            <a :href="link.link">{{ link.name }}</a>
+            <router-link :to="link.routeName">{{ link.name }}</router-link>
           </li>
         </ul>
       </div>
@@ -54,8 +57,11 @@ export default {
           :class="{ active: link.active }"
           v-for="(link, index) in headerLinks"
         >
-          <a :href="link.link">{{ link.name }}</a>
+        <router-link :to="link.routeName">{{ link.name }}</router-link>
         </li>
+        <li class="header-item">
+                        <a class="nav-link" href="http://127.0.0.1:8000/admin">Login</a>
+                    </li>
       </ul>
     </div>
   </header>
@@ -68,18 +74,23 @@ export default {
 header {
   width: 100%;
   height: 100px;
+  background-color: rgb(21, 20, 20);
+  margin-bottom: 2em;
+  // box-shadow: 1px 1px 10px black;
   .header-container {
+
     height: 100%;
     @include my-container;
     @include my-flex(row, space-between);
     .logo {
       font-size: 2rem;
-      font-weight: 600;
+      font-weight: 800;
       color: $red;
     }
     .ham-menu {
       display: none;
       position: relative;
+      z-index: 999;
     }
     ul {
       height: 100%;
@@ -89,7 +100,7 @@ header {
       color: $grey;
 
       .header-item {
-        font-size: 0.8rem;
+        font-size: 1rem;
         font-weight: bold;
         line-height: 100px;
         position: relative;
@@ -152,7 +163,7 @@ header {
 
         .menu {
           display: none;
-          border-radius: 10px;
+          border-radius: 3px;
           flex-direction: column;
           justify-content: flex-start;
           align-items: flex-start;
@@ -173,10 +184,13 @@ header {
             line-height: normal;
             font-size: 0.8rem;
             font-weight: bold;
-            transition: 300ms;
+            transition:  all 300ms;
+            margin-bottom: 1em;
+            padding: .3em;
 
             &:hover {
-              color: black;
+              border-left: 5px solid black;
+              transition: all 200ms;
             }
           }
         }

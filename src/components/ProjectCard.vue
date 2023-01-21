@@ -5,12 +5,21 @@ export default {
   data() {
     return {
       BackEndUrl: "http://127.0.0.1:8000",
+      descriptionMaxLength: 150,
     };
   },
   props: {
     project: Object,
   },
-  computed: {},
+  computed: {
+    clampTxt(){
+      if (this.project.description && this.project.description.length > this.descriptionMaxLength) {
+        return this.project.description.substr(0, this.descriptionMaxLength) + "...";
+      }
+      console.log(this.project.description);
+      return this.project.description;
+    }
+  },
   methods: {},
 };
 </script>
@@ -35,9 +44,9 @@ export default {
         {{ project.type.name }}
       </div>
       <div class="project-description">
-        {{ project.description }}
+        {{ clampTxt }}
       </div>
-      <a href="/">Read more</a>
+      <a class="read-more" href="/">Read more</a>
     </div>
   </div>
 </template>
@@ -48,7 +57,7 @@ export default {
 .project-card {
   @include my-flex(row, space-between);
   position: relative;
-  border: 1px solid $red;
+  // border: 1px solid $red;
   align-items: center;
   width: 80%;
   height: 400px;
@@ -90,6 +99,9 @@ export default {
       font-size: 2rem;
       color: $red;
       text-align: right;
+      width: 50%;
+      margin: 0 0 0 auto;
+
     }
 
     .project-description {
@@ -97,6 +109,43 @@ export default {
       text-align: right;
       margin: 0 0 0 auto;
     }
+
+    .techs{
+      width: 50%; 
+      margin: 0 0 0 auto;
+
+
+      & > span{
+        margin-right: .3em;
+        color: white;
+      }
+    }
+
+    .type{
+      color: white;
+    }
+
+    .read-more{
+      background-color: $red;
+      padding: .5em;
+      color: white;
+      width: max-content;
+      margin: 0 0 0 auto;
+      border-radius: 5px;
+      transition: 300ms;
+
+      &:hover{
+        color: $black;
+        transition: 300ms;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 880px) {
+
+  .project-description{
+    width: 100%!important;
   }
 }
 </style>
