@@ -113,10 +113,12 @@ export default {
     .techs{
       width: 50%; 
       margin: 0 0 0 auto;
+      @include my-flex(row,flex-end);
+      flex-wrap: wrap;
+      gap: .3em;
 
 
       & > span{
-        margin-right: .3em;
         color: white;
       }
     }

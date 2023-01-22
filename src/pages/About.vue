@@ -19,6 +19,7 @@ export default {
 @use "../styles/partials/_variables" as*;
 
 .container{
+    margin-top: 1em;
     @include my-container;
     
     h1{

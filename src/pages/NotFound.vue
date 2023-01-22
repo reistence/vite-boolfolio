@@ -7,7 +7,7 @@ export default {
 <template>
     <main>
         <div class="container">
-            <h1>Not Found 404</h1>
+            <h1>404 - Not Found</h1>
             <p>Sorry the page you were looking for doesn't exist</p>
         </div>
     </main>
@@ -21,11 +21,18 @@ export default {
 
 .container{
     @include my-container;
+    margin-top: 2em;
     h1{
         color: $red;
+        font-size: 3rem;
+        text-align: center;
+
     }
     p{
         color: $grey;
+        font-size: 1.5rem;
+        text-align: center;
+
     }
 }
 

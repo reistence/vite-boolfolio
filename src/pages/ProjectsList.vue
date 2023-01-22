@@ -70,6 +70,7 @@ export default {
   @include my-container;
 
   h1 {
+    margin-top: 1em;
     color: $red;
     text-align: center;
   }

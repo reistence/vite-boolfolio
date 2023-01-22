@@ -75,7 +75,7 @@ header {
   width: 100%;
   height: 100px;
   background-color: rgb(21, 20, 20);
-  margin-bottom: 2em;
+  // margin-bottom: 2em;
   // box-shadow: 1px 1px 10px black;
   .header-container {
 
@@ -176,6 +176,7 @@ header {
           position: absolute;
           top: 23px;
           left: -105px;
+          
 
           &.active {
             display: flex;
@@ -191,6 +192,7 @@ header {
             &:hover {
               border-left: 5px solid black;
               transition: all 200ms;
+              
             }
           }
         }
