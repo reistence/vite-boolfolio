@@ -114,13 +114,16 @@ export default {
         color: $red;
         padding: .5em;
         width: 10em;
+        font-size: 1rem;
+
         
       }
       button{
         background-color: $red;
-        padding: .6em;
+        padding: .53em;
         border:1px solid $grey;
         width: 5em;
+        font-size: 1rem;
 
         &:hover{
           background-color: $black;

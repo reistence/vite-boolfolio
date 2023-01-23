@@ -88,6 +88,7 @@ export default{
                 text-align: center;
                 transition: 200ms;
                 border-radius: 5px;
+                border: 1px solid $red;
 
                 &:hover{
                     color: $red;
