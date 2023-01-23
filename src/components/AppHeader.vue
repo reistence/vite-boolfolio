@@ -5,17 +5,17 @@ export default {
     return {
       headerLinks: [
        {
-          name: "Home",
+          label: "Home",
           routeName: "/",
           active: false,
         },
         {
-          name: "Projects",
+          label: "Projects",
           routeName: "projects",
           active: false,
         },
         {
-          name: "About",
+          label: "About",
           routeName: "about",
           active: false,
         },
@@ -47,7 +47,7 @@ export default {
             v-for="(link, index) in headerLinks"
             :key="index"
           >
-            <router-link :to="link.routeName">{{ link.name }}</router-link>
+            <router-link :to="link.routeName ">{{ link.label }}</router-link>
           </li>
         </ul>
       </div>
@@ -57,7 +57,7 @@ export default {
           :class="{ active: link.active }"
           v-for="(link, index) in headerLinks"
         >
-        <router-link :to="link.routeName">{{ link.name }}</router-link>
+        <router-link :to=" link.routeName ">{{ link.label }}</router-link>
         </li>
         <li class="header-item">
                         <a class="nav-link" href="http://127.0.0.1:8000/admin">Login</a>

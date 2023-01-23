@@ -46,7 +46,7 @@ export default {
       <div class="project-description">
         {{ clampTxt }}
       </div>
-      <a class="read-more" href="/">Read more</a>
+      <router-link  class="read-more" :to="{name: 'single-project', params: {slug: project.slug}}">Read more</router-link>
     </div>
   </div>
 </template>
