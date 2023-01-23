@@ -11,12 +11,12 @@ export default {
         },
         {
           label: "Projects",
-          routeName: "projects",
+          routeName: "/projects",
           active: false,
         },
         {
           label: "About",
-          routeName: "about",
+          routeName: "/about",
           active: false,
         },
         
