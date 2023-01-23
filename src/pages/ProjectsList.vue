@@ -9,6 +9,8 @@ export default {
     return {
       BackEndUrl: "http://127.0.0.1:8000",
       projects: [],
+      types: [],
+      selectedType: "",
       loading: false,
       currentPage: 1,
       lastPage: null,
@@ -17,13 +19,15 @@ export default {
   },
   created() {
     this.getProjects(1);
+    this.getTypes();
   },
   methods: {
     getProjects(page) {
       console.log(page);
       const options = {
        params: {
-        page
+        page,
+        ...this.selectedType && {type_id: this.selectedType}
        } 
       }; 
       axios.get(`${this.BackEndUrl}/api/projects`, options).then((resp) => {
@@ -34,12 +38,31 @@ export default {
         // console.log(this.projects);
       });
     },
+
+    getTypes(){
+      axios.get(`${this.BackEndUrl}/api/types`).then(resp => {
+        this.types = resp.data.results;
+      })
+    }
   },
 };
 </script>
 <template>
   <div class="container">
     <h1>Projects List</h1>
+    <div class="list-info">
+
+    <form @submit.prevent="getProjects(1)" action="">
+      <select name="" v-model="selectedType" id="">
+      <option value="">All</option>
+      <option v-for="type in types" :value="type.id" >{{ type.name }}</option>
+      </select>
+
+      <button type="submit">Filter</button>
+    </form>
+    <p>{{ totalProjects }} found</p>
+  </div>
+
     <div class="wrapper">
       <ProjectCard
         :project="project"
@@ -75,6 +98,40 @@ export default {
     text-align: center;
   }
 
+  .list-info{
+    @include my-flex(row, space-between);
+    margin-top: 1em;
+    p{
+      color: $grey
+    }
+
+    form{
+      @include my-flex(row,flex-start);
+      align-items: center;
+      
+      select{
+        background-color: $black;
+        color: $red;
+        padding: .5em;
+        width: 10em;
+        
+      }
+      button{
+        background-color: $red;
+        padding: .6em;
+        border:1px solid $grey;
+        width: 5em;
+
+        &:hover{
+          background-color: $black;
+          color: $red;
+        border:1px solid $red;
+
+        }
+        
+      }  
+    }
+  }
   .wrapper {
     @include my-flex(column, space-between);
     align-items: center;
