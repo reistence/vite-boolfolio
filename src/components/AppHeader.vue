@@ -19,6 +19,11 @@ export default {
           routeName: "/about",
           active: false,
         },
+        {
+          label: "Contact us",
+          routeName: "/contact-us",
+          active: false
+        }
         
 
       ],
